@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-import datetime
+from datetime import datetime
 import hashlib
 import os
 
 datehandler = lambda obj: obj.isoformat() if\
-    isinstance(obj, datetime.datetime) else\
+    isinstance(obj, datetime) else\
     None
 
 def md5_for_file(filehandle, block_size=2**20):
@@ -36,3 +36,7 @@ def already_running(prog):
             and cmdline.startswith('python'):
             return True
     return False
+
+def total_mins(start, end):
+    td = (end - start)
+    return (td.seconds + td.days * 24 * 3600) / 60.0
